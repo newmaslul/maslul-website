@@ -25,7 +25,13 @@
     <ul class="nav__links">
       <li><a href="index.html">בית</a></li>
       <li><a href="about.html">אודות</a></li>
-      <li><a href="schools.html" aria-current="page">בתי ספר</a></li>
+      <li class="has-sub"><a href="schools.html" aria-current="page">בתי ספר</a>
+        <ul class="sub">
+          <li><a href="elementary.html">תוכניות ליסודי</a></li>
+          <li><a href="secondary.html">חטיבות ביניים ותיכון</a></li>
+          <li><a href="workshops.html">סדנאות חד־פעמיות</a></li>
+        </ul>
+      </li>
       <li><a href="alush.html">צוות אלוש</a></li>
       <li><a href="organizations.html">ארגונים</a></li>
       <li><a href="#contact">צור קשר</a></li>
@@ -43,10 +49,10 @@
         <h1>תוכניות שמוציאות את <mark class="hl">הלמידה</mark> מהכיתה</h1>
         <p class="hero__lead">ספורט אתגרי, פעילות חוץ וכלים רגשיים מעשיים, בתוך מערכת השעות: לשיפור האקלים הכיתתי ולהעצמת כל תלמיד ותלמידה, מיסודי ועד תיכון.</p>
         <div class="btn-row">
-          <a class="btn btn--primary" href="#prices">למחירון התוכניות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+          <a class="btn btn--primary" href="#tracks">לבחירת תוכנית <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
           <a class="link" href="#contact">לתיאום פגישה</a>
         </div>
-        <ul class="hero__facts"><li><b>15–18</b><span>משתתפים לכל היותר בקבוצה</span></li><li><b>10%</b><span>הנחה מ־4 קבוצות</span></li><li><b>0%</b><span>מע״מ, אנחנו עמותה</span></li></ul>
+        <ul class="hero__facts"><li><b>15–18</b><span>משתתפים לכל היותר בקבוצה</span></li><li><b>10%</b><span>הנחה לכמה קבוצות</span></li><li><b>0%</b><span>מע״מ, אנחנו עמותה</span></li></ul>
       </div>
       <div class="board">
         <figure class="pol pol--1"><span class="tape" aria-hidden="true"></span><img src="images/elementary-moment.jpg" alt="מפגש ביסודי"><figcaption>מפגש ביסודי</figcaption></figure>
@@ -57,96 +63,18 @@
     </div>
   </section>
 
-  <section class="section" id="elementary">
+  <section class="section" id="tracks">
     <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">בתי ספר יסודיים</span>
-        <h2>תוכנית שבועית שמכירה כל ילד בשם</h2>
-        <p>ספורט, ספורט אתגרי, ODT, הישרדות ושמירה על הסביבה: תהליך מדורג ובטוח שמפתח מסוגלות עצמית, ביטחון ומודעות לאורח חיים בריא.</p>
+      <div class="head"><span class="eyebrow">שלושה מסלולים</span><h2>איזו תוכנית מתאימה לבית הספר שלכם?</h2><p>בחרו לפי שכבת הגיל ומשך הפעילות. בכל עמוד יש תיאור מלא, שלבים ומחירים.</p></div>
+      <div class="grid g3">
+        <a class="card" href="elementary.html"><div class="card__media"><img src="images/elementary-moment.jpg" alt="ילדים בפעילות שטח" loading="lazy"></div><div class="card__body"><span class="card__label">א׳–ו׳ · שבועי</span><h3>תוכניות ליסודי</h3><p>חמישה שלבים: אמון, מיומנויות אישיות, אורח חיים בריא, מיומנויות חברתיות והישרדות בשטח.</p><span class="card__more">לתוכנית ליסודי <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></div></a>
+        <a class="card" href="secondary.html"><div class="card__media"><img src="images/tug_026.jpg" alt="תלמידים במשימת משיכת חבל" loading="lazy"></div><div class="card__body"><span class="card__label">ז׳–י״ב · שבועי</span><h3>חטיבות ביניים ותיכון</h3><p>מסלול חדש, עם יום שיא ימי, ורצים בטוח, עם נבחרת ריצה ומרוץ רשמי.</p><span class="card__more">לתוכניות לחט״ב ולתיכון <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></div></a>
+        <a class="card" href="workshops.html"><div class="card__media"><img src="images/circle.jpg" alt="מעגל שיחה בסדנת גיבוש" loading="lazy"></div><div class="card__body"><span class="card__label">כל הגילאים · יום אחד</span><h3>סדנאות חד־פעמיות</h3><p>סדנת גיבוש של שעתיים לכיתה, לפתיחת שנה או לסיומה.</p><span class="card__more">לסדנאות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></div></a>
       </div>
-      <ol class="steps steps--letters grid g3">
-        <li data-l="א׳"><h3>אמון וחיבור</h3><p>אווירה בטוחה ומזמינה, היכרות עם המדריכים, קביעת נורמות קבוצתיות ותיאום ציפיות.</p></li>
-        <li data-l="ב׳"><h3>מיומנויות אישיות</h3><p>ביטחון עצמי, מוטיבציה ודימוי עצמי; פתרון בעיות והיכרות עם החוזקות והגבולות האישיים.</p></li>
-        <li data-l="ג׳"><h3>אורח חיים בריא</h3><p>סיבולת, כוח, קואורדינציה, שיווי משקל ומוטוריקה, ומוטיבציה פנימית לאורח חיים בריא.</p></li>
-        <li data-l="ד׳"><h3>מיומנויות חברתיות</h3><p>תקשורת בין־אישית, הבנת דינמיקה קבוצתית וחיזוק הקשר בין מורים לתלמידים.</p></li>
-        <li data-l="ה׳"><h3>העשרה, הישרדות וסביבה</h3><p>מיומנויות שטח והיכרות עם הסביבה, יכולת הסתגלות וביטחון עצמי בשטח.</p></li>
-        <li data-l="✓"><h3>הערכה ומדדי הצלחה</h3><p>תצפיות שוטפות ומשוב מורים בסיום: השתתפות, קשרים חברתיים חדשים, התנהגות ואקלים כיתתי.</p></li>
-      </ol>
-      <p class="note">הפעילויות עשויות להשתנות או להתרחב לפי שיקול צוות המדריכים, בתיאום עם הצוות החינוכי.</p>
     </div>
   </section>
 
-  <section class="section section--alt" id="programs">
-    <div class="wrap">
-      <div class="head head--solo">
-        <span class="eyebrow">חטיבות ביניים ותיכונים</span>
-        <h2>שלוש תוכניות, כל אחת עם שיא משלה</h2>
-      </div>
-
-      <article class="program" id="maslul">
-        <div class="program__side">
-          <span class="eyebrow">תוכנית הדגל</span>
-          <h3>מסלול חדש</h3>
-          <p>מעטפת חדשנית להעצמה אישית ואקלים כיתתי: ספורט אתגרי, פעילות חוץ (T.D.O) וכלים קוגניטיביים והתנהגותיים, בתוך מערכת השעות הרשמית.</p>
-          <ul class="pills"><li>למידה חווייתית</li><li>שיפור התקשורת</li><li>כלים פסיכו־חינוכיים</li></ul>
-          <a class="link video" href="https://www.youtube.com/watch?v=gvFIqzuT0s4" target="_blank" rel="noopener">לצפייה בסרטון התוכנית</a>
-          <div class="photo"><img src="images/tug_026.jpg" alt="תלמידים במשימה קבוצתית של משיכת חבל" loading="lazy"></div>
-        </div>
-        <div>
-          <ul class="prices">
-            <li><h3>סדנה מלאה ובסיום פעילות ימית</h3><p>26 ש״א: 12 מפגשים בבית הספר, יום שיא מחוץ לבית הספר (12 שעות) ומפגש סיכום ועיבוד.</p><span class="price">8,900 ₪</span></li>
-            <li><h3>סדנה ממוקדת ובסיום פעילות ימית</h3><p>20 ש״א: 7 מפגשים בבית הספר, יום שיא ימי ומפגש סיכום.</p><span class="price">6,900 ₪</span></li>
-            <li><h3>סדנה ללא אירוע שיא</h3><p>10 ש״א: 9 מפגשים בבית הספר ומפגש סיכום והערכה של שעתיים.</p><span class="price">4,900 ₪</span></li>
-          </ul>
-          <p class="note">מחיר לקבוצה, פטור ממע״מ. עד 15 תלמידים בקבוצה; פעילות בתנאי של שתי סדנאות רצופות לפחות באותו יום. ההסעה ליום השיא אינה כלולה. 10% הנחה מ־4 קבוצות.</p>
-        </div>
-      </article>
-
-      <article class="program" id="ratzim">
-        <div class="program__side">
-          <span class="eyebrow">ז׳–י״ב</span>
-          <h3>רצים בטוח</h3>
-          <p>בונים בבית הספר נבחרת ריצה מנצחת. אתגרים גופניים מדורגים לצד שיחות עיבוד רגשי, בהובלת מאמני כושר וריצה, ובסיום מרוץ רשמי.</p>
-          <ul class="pills"><li>העצמה ומנהיגות</li><li>אורח חיים בריא</li><li>שיפור האקלים</li></ul>
-          <a class="link video" href="https://www.youtube.com/watch?v=8cDZ_1smX-w" target="_blank" rel="noopener">לצפייה בסרטון התוכנית</a>
-          <div class="photo"><img src="images/women_020.jpg" alt="נערות בריצת אימון" loading="lazy"></div>
-        </div>
-        <div>
-          <ul class="prices">
-            <li><h3>רצים בטוח, כולל השתתפות במירוץ</h3><p>64 ש״א: 15 מפגשים ויום מרוץ.</p><span class="price">15,900 ₪</span></li>
-            <li><h3>דמי הרשמה למרוץ</h3><p>לכל משתתף.</p><span class="price">90 ₪</span></li>
-          </ul>
-          <div class="note-box" style="margin-top:28px">
-            <h3>למי זה מתאים</h3>
-            <ul class="checks">
-              <li>חטיבות ביניים (ז׳–ט׳) ותיכונים (י׳–י״ב)</li>
-              <li>קבוצות נוער שצריכות חוויית הצלחה</li>
-              <li>עד 15 בקבוצה מעורבת, או עד 18 בכיתה אורגנית עם מחנכת</li>
-              <li>אפשר להחליף את המרוץ בניווט, יום שטח או פעילות ימית</li>
-            </ul>
-          </div>
-          <p class="note">10% הנחה מ־2 קבוצות. פטור ממע״מ, לא כולל הסעה למרוץ. מומלץ לתאם מראש מרוץ רשמי קרוב לבית הספר.</p>
-        </div>
-      </article>
-
-      <article class="program" id="sadnaot">
-        <div class="program__side">
-          <span class="eyebrow">פתיחת שנה · סיום שנה</span>
-          <h3>סדנת גיבוש ליום אחד</h3>
-          <p>סדנה שבונה קשרים חברתיים חזקים ונותנת לצוות החינוכי כלי מקצועי להתבונן בתלמידים ובקבוצה. מתקיימת בבית הספר או מחוצה לו.</p>
-          <ul class="pills"><li>עבודת צוות</li><li>תקשורת בין־אישית</li><li>גיבוש</li></ul>
-        </div>
-        <div>
-          <ul class="prices">
-            <li><h3>סדנה חד־יומית</h3><p>2 ש״א, עד 15 בקבוצה מעורבת או עד 20 בכיתה אורגנית.</p><span class="price">1,750 ₪ <small>לכיתה</small></span></li>
-          </ul>
-          <p class="note">10% הנחה מ־4 קבוצות. פטור ממע״מ.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="prices">
+  <section class="section section--alt" id="prices">
     <div class="wrap">
       <div class="head">
         <span class="eyebrow">טבלה מרכזת</span>
@@ -201,7 +129,7 @@
           <a href="https://www.youtube.com/watch?v=8cDZ_1smX-w" target="_blank" rel="noopener" aria-label="יוטיוב"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.7 3.1-5.7 3.1z"/></svg></a>
         </div>
       </div>
-      <div><h3>תוכניות</h3><ul><li><a href="schools.html">בתי ספר</a></li><li><a href="alush.html">צוות אלוש</a></li><li><a href="alush.html#liav">בדרכו של ליאב</a></li><li><a href="organizations.html">ימי גיבוש לארגונים</a></li></ul></div>
+      <div><h3>תוכניות</h3><ul><li><a href="elementary.html">תוכניות ליסודי</a></li><li><a href="secondary.html">חט״ב ותיכון</a></li><li><a href="workshops.html">סדנאות חד־פעמיות</a></li><li><a href="alush.html">צוות אלוש</a></li><li><a href="alush.html#liav">בדרכו של ליאב</a></li><li><a href="organizations.html">ימי גיבוש לארגונים</a></li></ul></div>
       <div><h3>העמותה</h3><ul><li><a href="about.html">אודות</a></li><li><a href="about.html#team">הצוות</a></li><li><a href="about.html#docs">דוחות ואישורים</a></li><li><a href="index.html#voices">ממליצים</a></li><li><a href="https://newmaslul.co.il" target="_blank" rel="noopener">האתר הקודם</a></li></ul></div>
       <div><h3>יצירת קשר</h3><ul><li><a href="tel:0544221337">רולי · 054-4221337</a></li><li><a href="tel:0544225112">רונן · 054-4225112</a></li><li><a href="mailto:newmaslul@gmail.com">newmaslul@gmail.com</a></li><li>פנינה 8, גדרה</li></ul></div>
     </div>
