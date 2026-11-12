@@ -405,3 +405,6 @@ td b { font: 900 22px var(--f-display); }
 .crumbs { font-size: 15px; color: var(--muted); margin-bottom: 18px; }
 .crumbs a { font-weight: 700; color: var(--rust); text-decoration: none; border-bottom: 1.5px solid currentColor; }
 .has-sub:has(.sub a[aria-current="page"]) > a { background-size: 100% 100%; }
+
+.gallery--4 { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 260px; }
+@media (max-width: 900px) { .gallery--4 { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; } }
