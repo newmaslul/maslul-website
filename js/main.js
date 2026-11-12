@@ -58,4 +58,16 @@
       status.textContent = 'נפתחה הודעת מייל מוכנה. נשאר רק ללחוץ "שליחה".';
     });
   });
+  // Framed videos: a pause/play button, and no autoplay for people who prefer reduced motion.
+  const pauseIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>';
+  const playIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>';
+  document.querySelectorAll('.photo--video').forEach(box => {
+    const v = box.querySelector('video'), b = box.querySelector('.video-toggle');
+    if (!v || !b) return;
+    const sync = () => { const p = v.paused; b.innerHTML = p ? playIcon : pauseIcon; b.setAttribute('aria-label', p ? 'הפעלת הסרטון' : 'עצירת הסרטון'); };
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) v.pause();
+    b.addEventListener('click', () => { if (v.paused) v.play(); else v.pause(); });
+    v.addEventListener('play', sync); v.addEventListener('pause', sync); sync();
+  });
 })();
+
