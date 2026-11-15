@@ -187,13 +187,22 @@ p { margin: 0; }
 .area__no { display: block; margin-top: 14px; font: 700 26px/1 var(--f-hand); color: var(--rust); }
 .area h3 { margin: 6px 0 6px; }
 .area p { color: var(--muted); font-size: 17px; }
-.area--1 { grid-column: 1 / 8; } .area--1 .area__ph { height: 400px; }
-.area--2 { grid-column: 8 / 13; margin-top: 110px; } .area--2 .area__ph { height: 290px; }
-.area--3 { grid-column: 1 / 6; } .area--3 .area__ph { height: 280px; }
-.area--4 { grid-column: 6 / 13; margin-top: -40px; } .area--4 .area__ph { height: 330px; }
+/* large first: community (01) tall on the right over two rows; organizations (02) wide beside it.
+   small: schools (03) + צוות אלוש (04), under organizations. */
+.area--1 { grid-column: 1 / 7; grid-row: 1 / span 2; align-self: start; } .area--1 .area__ph { height: 400px; }
+.area--2 { grid-column: 7 / 13; grid-row: 1; margin-top: 24px; } .area--2 .area__ph { height: 270px; }
+.area--3 { grid-column: 7 / 10; grid-row: 2; margin-top: 8px; } .area--3 .area__ph { height: 190px; }
+.area--4 { grid-column: 10 / 13; grid-row: 2; margin-top: 32px; } .area--4 .area__ph { height: 190px; }
+.area--1 h3, .area--2 h3 { font-size: clamp(25px, 2.1vw, 31px); }
+.area--1 p, .area--2 p { font-size: 17px; }
+.area--3 h3, .area--4 h3 { font-size: 21px; }
+.area--3 p, .area--4 p { font-size: 15px; }
+.area__more { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-weight: 700; border-bottom: 2px solid var(--rust); padding-bottom: 2px; }
+.area__more svg { width: 16px; height: 16px; transition: transform .2s var(--ease); }
+.area:hover .area__more svg { transform: translateX(-4px); }
 @media (max-width: 900px) {
   .areas { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
-  .area--1, .area--2, .area--3, .area--4 { grid-column: auto; margin-top: 0; }
+  .area--1, .area--2, .area--3, .area--4 { grid-column: auto; grid-row: auto; margin-top: 0; }
   .area .area__ph { height: 240px !important; }
 }
 @media (max-width: 640px) { .areas { grid-template-columns: 1fr; } }
