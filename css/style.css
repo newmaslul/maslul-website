@@ -454,7 +454,7 @@ td b { font: 900 22px var(--f-display); }
    Logos orbit a vertical axis while climbing, always facing forward; the ones at the back fade.
    On phones the same logos scroll by in a single strip instead. */
 @property --a { syntax: "<angle>"; inherits: true; initial-value: 0deg; }
-.spiral { position: relative; height: 430px; perspective: 1400px; overflow: hidden; margin-top: 8px;
+.spiral { position: relative; height: 520px; perspective: 1400px; overflow: hidden; margin-top: 8px;
   -webkit-mask-image: linear-gradient(transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(transparent, #000 8%, #000 92%, transparent); }
 .spiral__axis { position: absolute; top: 50%; left: 50%; width: 0; height: 0; margin: 0; padding: 0; transform-style: preserve-3d; animation: spiral-spin 75s linear infinite; }
 .spiral:hover .spiral__axis { animation-play-state: paused; }
@@ -462,7 +462,7 @@ td b { font: 900 22px var(--f-display); }
   --t: calc(var(--i) * 40deg + var(--a));
   position: absolute; width: 132px; height: 82px; left: -66px; top: -41px; list-style: none;
   display: grid; place-items: center; padding: 11px; background: #fff; box-shadow: 0 8px 18px -12px rgba(0,0,0,.5);
-  transform: rotateY(var(--t)) translateZ(320px) rotateY(calc(-1 * var(--t))) translateY(calc((var(--i) - (var(--n) - 1) / 2) * 22px));
+  transform: rotateY(var(--t)) translateZ(320px) rotateY(calc(-1 * var(--t))) translateY(calc((var(--i) - (var(--n) - 1) / 2) * 20px));
   opacity: calc(.3 + .7 * (cos(var(--t)) + 1) / 2);
 }
 .spiral__axis li::before { content: ""; position: absolute; top: -8px; left: 36%; width: 42px; height: 15px; background: var(--tape); transform: rotate(-5deg); }
@@ -470,7 +470,7 @@ td b { font: 900 22px var(--f-display); }
 .spiral__axis .spiral__dup { display: none; }
 @keyframes spiral-spin { to { --a: -360deg; } }
 @media (min-width: 641px) and (max-width: 1100px) {
-  .spiral__axis li { transform: rotateY(var(--t)) translateZ(240px) rotateY(calc(-1 * var(--t))) translateY(calc((var(--i) - (var(--n) - 1) / 2) * 22px)); }
+  .spiral__axis li { transform: rotateY(var(--t)) translateZ(240px) rotateY(calc(-1 * var(--t))) translateY(calc((var(--i) - (var(--n) - 1) / 2) * 20px)); }
 }
 @media (max-width: 640px) {
   .spiral { height: auto; perspective: none; padding: 14px 0;
