@@ -481,3 +481,8 @@ td b { font: 900 22px var(--f-display); }
 }
 @keyframes strip-scroll { to { transform: translateX(50%); } }
 @media (prefers-reduced-motion: reduce) { .spiral__axis { animation: none; } }
+
+/* YouTube video playing as a muted background inside a photo frame */
+.photo--yt { position: relative; background: #000 center / cover no-repeat; }
+.photo--yt iframe { position: absolute; top: 50%; left: 50%; width: 160%; height: 120%; transform: translate(-50%, -50%); border: 0; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .photo--yt iframe { display: none; } }
