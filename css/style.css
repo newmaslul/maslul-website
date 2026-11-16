@@ -511,3 +511,9 @@ td b { font: 900 22px var(--f-display); }
 .board:not(.board--duo) .pol--2 figcaption { text-align: left; }
 /* a docs row without a file (e.g. supplier number): no link arrow */
 .roster--docs li:not(:has(a)) b::after { content: none; }
+/* longer polaroid captions (e.g. two names) stay on one line */
+.pol figcaption.cap-sm { font-size: 24px; white-space: nowrap; }
+.cap-narrow { display: none; }
+@media (max-width: 640px) { .pol figcaption.cap-sm { font-size: 22px; } .cap-wide { display: none; } .cap-narrow { display: inline; } }
+/* phones: the top-right polaroid sits above the bottom one, so its caption is never covered */
+@media (max-width: 640px) { .board:not(.board--duo) .pol--1 { z-index: 3; } }
