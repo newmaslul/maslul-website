@@ -69,5 +69,25 @@
     b.addEventListener('click', () => { if (v.paused) v.play(); else v.pause(); });
     v.addEventListener('play', sync); v.addEventListener('pause', sync); sync();
   });
-})();
 
+  // Partner spiral: a pause button (WCAG 2.2.2 — anything moving longer than 5 seconds can be stopped)
+  document.querySelectorAll('[data-motion-toggle]').forEach(b => {
+    const target = b.previousElementSibling;
+    b.addEventListener('click', () => {
+      const paused = target.classList.toggle('is-paused');
+      b.setAttribute('aria-pressed', String(paused));
+      b.textContent = paused ? 'הפעלת התנועה' : 'עצירת התנועה';
+    });
+  });
+  // YouTube background videos: pausing unloads the player and shows the still photo behind it
+  document.querySelectorAll('[data-yt-toggle]').forEach(b => {
+    const box = b.closest('.photo--yt'), f = box.querySelector('iframe'), src = f.getAttribute('src');
+    const sync = () => { const p = box.classList.contains('is-paused'); b.innerHTML = p ? playIcon : pauseIcon; b.setAttribute('aria-label', p ? 'הפעלת הסרטון' : 'עצירת הסרטון'); };
+    b.addEventListener('click', () => {
+      const p = box.classList.toggle('is-paused');
+      f.setAttribute('src', p ? 'about:blank' : src);
+      sync();
+    });
+    sync();
+  });
+})();
