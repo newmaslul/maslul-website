@@ -489,3 +489,6 @@ td b { font: 900 22px var(--f-display); }
 .photo--yt iframe { background: #000; }
 .photo--yt iframe { position: absolute; inset: 12px; width: calc(100% - 24px); height: calc(100% - 24px); border: 0; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .photo--yt iframe { display: none; } }
+
+/* the left polaroid sits under the bottom one: keep its caption on the visible left side */
+.board:not(.board--duo) .pol--2 figcaption { text-align: left; }
