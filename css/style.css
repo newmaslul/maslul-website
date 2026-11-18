@@ -537,3 +537,15 @@ td b { font: 900 22px var(--f-display); }
 /* leave room under the footer for the fixed WhatsApp button, so it never covers the legal line */
 .footer { padding-bottom: 150px; }
 @media (max-width: 640px) { .footer { padding-bottom: 110px; } }
+
+/* home: recognitions band under the hero (MOD supplier, Ministry of Education, Gefen) */
+.certs-band { padding: 0 0 96px; }
+.certs-band__wrap { display: flex; align-items: center; justify-content: center; gap: 20px 40px; flex-wrap: wrap; }
+.certs-band__title { margin: 0; font: 700 34px/1 var(--f-hand); color: var(--rust); transform: rotate(-2deg); }
+.certs__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px 44px; list-style: none; margin: 0; padding: 0; }
+.certs__list li { display: flex; align-items: center; gap: 14px; }
+.certs__list img { height: 76px; width: auto; border-radius: 8px; mix-blend-mode: multiply; }
+.certs__list img[src$=".jpg"] { mix-blend-mode: normal; }
+.certs__list span { font: 400 15px/1.3 var(--f-text); color: var(--muted); }
+.certs__list b { display: block; font-size: 17px; font-weight: 700; color: var(--ink); }
+@media (max-width: 640px) { .certs__list { flex-direction: column; align-items: flex-start; gap: 16px; } .certs__list img { height: 60px; } }
