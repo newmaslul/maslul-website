@@ -555,3 +555,5 @@ td b { font: 900 22px var(--f-display); }
 .notfound__wrap { max-width: 820px; }
 .notfound h1 { font-size: clamp(40px, 6vw, 76px); margin: 14px 0 18px; }
 .notfound .btn-row { flex-wrap: wrap; gap: 18px 28px; }
+/* stamp: readable over photos */
+.stamp { background: var(--card); box-shadow: 0 8px 18px -10px rgba(0, 0, 0, .45); z-index: 6; opacity: 1; }
