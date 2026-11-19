@@ -557,3 +557,19 @@ td b { font: 900 22px var(--f-display); }
 .notfound .btn-row { flex-wrap: wrap; gap: 18px 28px; }
 /* stamp: readable over photos */
 .stamp { background: var(--card); box-shadow: 0 8px 18px -10px rgba(0, 0, 0, .45); z-index: 6; opacity: 1; }
+/* hero facts: three short headlines, no subtitles */
+.hero__facts--big { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 28px; }
+.hero__facts--big b { font-size: clamp(22px, 1.9vw, 28px); line-height: 1.2; }
+@media (max-width: 640px) { .hero__facts--big { grid-template-columns: 1fr; gap: 10px; } .hero__facts--big b { font-size: 24px; } }
+
+/* parent-child: upcoming trips */
+.trips { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.trip { display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 12px 28px; background: var(--card); padding: 20px 26px; box-shadow: 0 14px 28px -18px rgba(0, 0, 0, .5); }
+.trip__date { border-inline-start: 0; text-align: center; padding-inline-end: 24px; border-inline-end: 2px dashed var(--line); }
+.trip__date b { display: block; font: 900 30px/1.1 var(--f-display); }
+.trip__date span { font-size: 15px; color: var(--muted); }
+.trip h3 { font-size: 24px; margin: 0 0 4px; }
+.trip p { margin: 0; color: var(--muted); font-size: 17px; }
+.trips__empty { font-size: 19px; margin: 0; }
+.trips__empty a { color: var(--rust); font-weight: 700; }
+@media (max-width: 640px) { .trip { grid-template-columns: 1fr; text-align: start; padding: 18px; } .trip__date { text-align: start; border-inline-end: 0; padding: 0 0 10px; border-bottom: 2px dashed var(--line); } .trip .btn { width: 100%; } }

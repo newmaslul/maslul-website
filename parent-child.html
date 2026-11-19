@@ -37,7 +37,7 @@
       </li>
       <li class="has-sub"><a href="community.html">קהילה</a>
         <ul class="sub">
-          <li><a href="parent-child.html" aria-current="page">הורה וילד: מסע של חוויות</a></li>
+          <li><a href="parent-child.html" aria-current="page">הורה וילד – מסע של חוויות</a></li>
           <li><a href="alush.html">צוות אלוש – כושר קרבי</a></li>
         </ul>
       </li>
@@ -65,11 +65,11 @@
           <a class="btn btn--primary" href="https://api.whatsapp.com/send?phone=972528501313&text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%B4%D7%9E%D7%A1%D7%A2%20%D7%A9%D7%9C%20%D7%97%D7%95%D7%95%D7%99%D7%95%D7%AA%D7%B4%20%E2%80%93%20%D7%94%D7%95%D7%A8%D7%94%20%D7%95%D7%99%D7%9C%D7%93%20%D7%99%D7%95%D7%A6%D7%90%D7%99%D7%9D%20%D7%9C%D7%A9%D7%98%D7%97" target="_blank" rel="noopener">לפרטים בוואטסאפ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
           <a class="link" href="#what">מה מחכה לכם</a>
         </div>
-        <ul class="hero__facts"><li><b>הורה + ילד/ה</b><span>יוצאים לשטח יחד</span></li><li><b>מדורה וכוכבים</b><span>הערב שהילדים זוכרים</span></li><li><b>לפי גיל</b><span>כל ילד/ה עם בני גילו/ה</span></li></ul>
+        <ul class="hero__facts hero__facts--big"><li><b>יוצאים לשטח ביחד, הורה וילד</b></li><li><b>ערב שילדים זוכרים</b></li><li><b>כל ילד עם בני גילו/ה</b></li></ul>
       </div>
       <div class="board">
-        <figure class="pol pol--1"><span class="tape" aria-hidden="true"></span><img src="images/parent-child/waterfall.jpg" alt="אבא ובת עומדים יחד מול מפל"><figcaption>הורה וילד/ה</figcaption></figure>
-        <figure class="pol pol--2"><span class="tape" aria-hidden="true"></span><img src="images/parent-child/stream.webp" alt="אבא ובת יושבים יחד על סלע בנחל"><figcaption>עושים את זה ביחד</figcaption></figure>
+        <figure class="pol pol--1"><span class="tape" aria-hidden="true"></span><img src="images/parent-child/night-game.webp" alt="אבא ובת כורעים יחד במשחק לילה בשטח" style="object-position:50% 30%"><figcaption>הורה וילד/ה</figcaption></figure>
+        <figure class="pol pol--2"><span class="tape" aria-hidden="true"></span><img src="images/parent-child/climb-together.webp" alt="אבא ובת מטפסים יחד על סלעים עם קסדות" style="object-position:55% 40%"><figcaption>עושים את זה ביחד</figcaption></figure>
         <figure class="pol pol--3"><img src="images/rappel.jpg" alt="אתגר בשטח"><figcaption>אתגר בשטח</figcaption></figure>
         <div class="stamp" aria-hidden="true">יומיים<br>בשטח</div>
       </div>
@@ -119,6 +119,17 @@
       <div class="photo"><img src="images/parent-child/selfie-rocks.webp" alt="אבא ובן מחייכים בסלפי בין הסלעים, הבן עם קסדת טיפוס" loading="lazy"></div>
     </div>
   </section>
+  <section class="section section--alt" id="trips">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">לוח מסעות</span><h2>המסעות הקרובים</h2><p>היציאות הבאות של מסע הורה וילד. המקומות מוגבלים, ולכן כדאי לשריין מוקדם.</p></div>
+      <!-- To add a trip, copy one <li> line. data-end = last day of the trip (YYYY-MM-DD); it hides itself after that day. -->
+      <ul class="trips" data-trips>
+        <li class="trip" data-end="2026-12-12" data-place="מדבר יהודה" data-when="11–12 בדצמבר 2026"><div class="trip__date"><b>11–12</b><span>דצמבר 2026</span></div><div><h3>מדבר יהודה</h3><p>גילאים 12–14 · לינה בחאן השיירות</p></div><a class="btn btn--primary" data-trip-wa href="https://api.whatsapp.com/send?phone=972528501313" target="_blank" rel="noopener">להרשמה בוואטסאפ</a></li>
+      </ul>
+      <p class="trips__empty" data-trips-empty hidden>המסעות הבאים יפורסמו כאן בקרוב. <a href="https://api.whatsapp.com/send?phone=972528501313&text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%94%D7%9E%D7%A1%D7%A2%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%20%D7%94%D7%95%D7%A8%D7%94%20%D7%95%D7%99%D7%9C%D7%93" target="_blank" rel="noopener">כתבו לנו בוואטסאפ</a> ונעדכן אתכם ראשונים.</p>
+    </div>
+  </section>
+
   <section class="section section--dark" id="contact">
     <div class="wrap cta">
       <div>

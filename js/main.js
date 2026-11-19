@@ -90,4 +90,19 @@
     });
     sync();
   });
+
+  // Parent-child: upcoming trips. Past trips hide themselves; each gets a WhatsApp sign-up link.
+  document.querySelectorAll('[data-trips]').forEach(list => {
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    let shown = 0;
+    list.querySelectorAll('[data-end]').forEach(li => {
+      const end = new Date(li.dataset.end + 'T23:59:59');
+      if (end < today) { li.remove(); return; }
+      shown++;
+      const a = li.querySelector('[data-trip-wa]');
+      if (a) a.href = 'https://api.whatsapp.com/send?phone=972528501313&text=' + encodeURIComponent('שלום, אשמח להירשם למסע הורה וילד: ' + li.dataset.place + ', ' + li.dataset.when);
+    });
+    const empty = list.parentElement.querySelector('[data-trips-empty]');
+    if (empty) empty.hidden = shown > 0;
+  });
 })();
