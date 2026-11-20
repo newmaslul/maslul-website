@@ -102,9 +102,71 @@
       const a = li.querySelector('[data-trip-wa]');
       if (a) a.href = 'https://api.whatsapp.com/send?phone=972528501313&text=' + encodeURIComponent('שלום, אשמח להירשם למסע הורה וילד: ' + li.dataset.place + ', ' + li.dataset.when);
     });
-    const empty = list.parentElement.querySelector('[data-trips-empty]');
+    const section = list.closest('section') || list.parentElement;
+    const empty = section.querySelector('[data-trips-empty]');
     if (empty) empty.hidden = shown > 0;
+    const cal = section.querySelector('[data-trips-cal]');
+    if (cal && shown) tripsCalendar(cal, [...list.querySelectorAll('[data-end]')], today);
   });
+
+  // Month calendar drawn from the trips list: trip days are marked; clicking one points at its trip.
+  function tripsCalendar(cal, items, today) {
+    const MONTHS = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+    const day = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+    const trips = items.map((li, i) => {
+      if (!li.id) li.id = 'trip-' + (i + 1);
+      const end = day(li.dataset.end);
+      return { li, start: li.dataset.start ? day(li.dataset.start) : end, end, place: li.dataset.place };
+    }).sort((a, b) => a.start - b.start);
+    const key = d => d.getFullYear() * 12 + d.getMonth();
+    const first = Math.max(key(today), key(trips[0].start));
+    const last = Math.max(first, ...trips.map(t => key(t.end)));
+    let cur = first;
+    cal.hidden = false;
+    cal.innerHTML =
+      '<div class="trips-cal__head"><button type="button" class="trips-cal__nav" data-step="-1" aria-label="החודש הקודם">›</button>' +
+      '<b aria-live="polite"></b><button type="button" class="trips-cal__nav" data-step="1" aria-label="החודש הבא">‹</button></div>' +
+      '<div class="trips-cal__grid"></div>' +
+      '<p class="trips-cal__legend"><span></span>ימי מסע · לחצו על יום לפרטים</p>';
+    const title = cal.querySelector('b');
+    const grid = cal.querySelector('.trips-cal__grid');
+    const navs = cal.querySelectorAll('[data-step]');
+    const draw = () => {
+      const y = Math.floor(cur / 12), m = cur % 12;
+      title.textContent = MONTHS[m] + ' ' + y;
+      navs[0].disabled = cur <= first; navs[1].disabled = cur >= last;
+      let h = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'].map(d => '<span class="trips-cal__dow" aria-hidden="true">' + d + '</span>').join('');
+      const lead = new Date(y, m, 1).getDay();
+      for (let i = 0; i < lead; i++) h += '<span></span>';
+      const days = new Date(y, m + 1, 0).getDate();
+      for (let d = 1; d <= days; d++) {
+        const date = new Date(y, m, d);
+        const t = trips.find(t => date >= t.start && date <= t.end);
+        const cls = ['trips-cal__day'];
+        if (+date === +today) cls.push('is-today');
+        if (date < today) cls.push('is-past');
+        if (t) {
+          cls.push('is-trip');
+          if (+date === +t.start) cls.push('is-start');
+          if (+date === +t.end) cls.push('is-end');
+          h += '<a class="' + cls.join(' ') + '" href="#' + t.li.id + '" aria-label="' + d + ' ב' + MONTHS[m] + ': ' + t.place + '">' + d + '</a>';
+        } else {
+          h += '<span class="' + cls.join(' ') + '">' + d + '</span>';
+        }
+      }
+      grid.innerHTML = h;
+    };
+    navs.forEach(b => b.addEventListener('click', () => { cur += Number(b.dataset.step); draw(); }));
+    grid.addEventListener('click', e => {
+      const a = e.target.closest('a.is-trip');
+      if (!a) return;
+      e.preventDefault();
+      const li = document.getElementById(a.getAttribute('href').slice(1));
+      li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      li.classList.remove('is-flash'); void li.offsetWidth; li.classList.add('is-flash');
+    });
+    draw();
+  }
 })();
 
 // Accessibility menu: built into the site (no third-party plugin). Settings are saved in localStorage.
