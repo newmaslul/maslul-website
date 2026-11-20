@@ -119,9 +119,10 @@
       return { li, start: li.dataset.start ? day(li.dataset.start) : end, end, place: li.dataset.place };
     }).sort((a, b) => a.start - b.start);
     const key = d => d.getFullYear() * 12 + d.getMonth();
-    const first = Math.max(key(today), key(trips[0].start));
-    const last = Math.max(first, ...trips.map(t => key(t.end)));
-    let cur = first;
+    // Browse from this month up to 12 months ahead (further if a trip is later); open on the next trip's month.
+    const first = key(today);
+    const last = Math.max(first + 11, ...trips.map(t => key(t.end)));
+    let cur = Math.max(first, key(trips[0].start));
     cal.hidden = false;
     cal.innerHTML =
       '<div class="trips-cal__head"><button type="button" class="trips-cal__nav" data-step="-1" aria-label="החודש הקודם">›</button>' +
@@ -155,7 +156,25 @@
         }
       }
       grid.innerHTML = h;
+      // The list shows only the trips of the month on view.
+      let inMonth = 0;
+      trips.forEach(t => { t.li.hidden = !(key(t.start) <= cur && cur <= key(t.end)); if (!t.li.hidden) inMonth++; });
+      none.hidden = inMonth > 0;
+      if (!inMonth) {
+        const next = trips.find(t => key(t.start) > cur);
+        none.innerHTML = '<p>אין כרגע מסעות בחודש ' + MONTHS[m] + ' ' + y + '.</p>' + (next
+          ? '<button type="button" class="btn btn--secondary" data-goto="' + key(next.start) + '">למסע הבא: ' + next.place + ', ' + next.li.dataset.when + '</button>'
+          : '<p>המסעות הבאים יפורסמו כאן בקרוב.</p>');
+      }
     };
+    const none = document.createElement('li');
+    none.className = 'trip trip--none';
+    none.setAttribute('aria-live', 'polite');
+    trips[0].li.parentElement.appendChild(none);
+    none.addEventListener('click', e => {
+      const b = e.target.closest('[data-goto]');
+      if (b) { cur = Number(b.dataset.goto); draw(); }
+    });
     navs.forEach(b => b.addEventListener('click', () => { cur += Number(b.dataset.step); draw(); }));
     grid.addEventListener('click', e => {
       const a = e.target.closest('a.is-trip');

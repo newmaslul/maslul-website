@@ -592,6 +592,9 @@ td b { font: 900 22px var(--f-display); }
 .trips-cal__legend { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: 14px; color: var(--muted); }
 .trips-cal__legend span { width: 22px; height: 12px; border-radius: 6px; background: var(--green); }
 .trip { scroll-margin: calc(var(--nav) + 20px); }
+.trip[hidden] { display: none; }
+.trip--none { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; }
+.trip--none p { font-size: 19px; color: var(--ink); }
 .trip.is-flash { animation: trip-flash 1.6s var(--ease); }
 @keyframes trip-flash { 0%, 40% { box-shadow: 0 0 0 4px var(--hl), 0 14px 28px -18px rgba(0, 0, 0, .5); } }
 @media (max-width: 900px) { .trips-board { grid-template-columns: 1fr; } .trips-cal { max-width: 420px; } }
