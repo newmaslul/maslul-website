@@ -92,7 +92,57 @@
   });
 
   // Parent-child: upcoming trips. Past trips hide themselves; each gets a WhatsApp sign-up link.
+  // If the list has data-sheet (a Google Sheet id), trips are read from that sheet; the trips in the HTML are the fallback.
   document.querySelectorAll('[data-trips]').forEach(list => {
+    if (!list.dataset.sheet) return setupTrips(list);
+    tripsFromSheet(list.dataset.sheet)
+      .then(rows => { list.innerHTML = rows.map(tripHtml).join(''); })
+      .catch(() => {})
+      .then(() => setupTrips(list));
+  });
+
+  const HEB_MONTHS = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+
+  // Sheet columns: תאריך התחלה | תאריך סיום | מקום | גילאים | פרטים. Read through the public gviz endpoint.
+  function tripsFromSheet(id) {
+    const cellDate = c => {
+      if (!c || c.v == null || c.v === '') return null;
+      let m = /^Date\((\d+),(\d+),(\d+)/.exec(c.v);
+      if (m) return new Date(+m[1], +m[2], +m[3]);
+      const s = String(c.f || c.v).trim();
+      if ((m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(s))) return new Date(+m[1], m[2] - 1, +m[3]);
+      if ((m = /^(\d{1,2})[./](\d{1,2})[./](\d{2,4})$/.exec(s))) return new Date(m[3].length === 2 ? 2000 + +m[3] : +m[3], m[2] - 1, +m[1]);
+      return null;
+    };
+    const text = c => (c && c.v != null ? String(c.f != null && typeof c.v !== 'string' ? c.f : c.v).trim() : '');
+    return fetch('https://docs.google.com/spreadsheets/d/' + encodeURIComponent(id) + '/gviz/tq?tqx=out:json&headers=1', { credentials: 'omit' })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(t => JSON.parse(t.slice(t.indexOf('(') + 1, t.lastIndexOf(')'))).table.rows)
+      .then(rows => rows.map(r => {
+        const c = r.c || [];
+        const start = cellDate(c[0]);
+        const end = cellDate(c[1]) || start;
+        const place = text(c[2]);
+        return start && place ? { start, end: end < start ? start : end, place, ages: text(c[3]), details: text(c[4]) } : null;
+      }).filter(Boolean).sort((a, b) => a.start - b.start));
+  }
+
+  function tripHtml(t) {
+    const s = t.start, e = t.end, sameMonth = s.getFullYear() === e.getFullYear() && s.getMonth() === e.getMonth();
+    const days = +s === +e ? '' + s.getDate() : sameMonth ? s.getDate() + '–' + e.getDate() : s.getDate() + '.' + (s.getMonth() + 1) + '–' + e.getDate() + '.' + (e.getMonth() + 1);
+    const label = sameMonth ? HEB_MONTHS[s.getMonth()] + ' ' + s.getFullYear() : '' + e.getFullYear();
+    const when = sameMonth ? days + ' ב' + label
+      : s.getDate() + ' ב' + HEB_MONTHS[s.getMonth()] + (s.getFullYear() !== e.getFullYear() ? ' ' + s.getFullYear() : '') + ' – ' + e.getDate() + ' ב' + HEB_MONTHS[e.getMonth()] + ' ' + e.getFullYear();
+    const info = [t.ages && 'גילאים ' + t.ages, t.details].filter(Boolean).join(' · ');
+    return '<li class="trip" data-start="' + iso(s) + '" data-end="' + iso(e) + '" data-place="' + esc(t.place) + '" data-when="' + esc(when) + '">' +
+      '<div class="trip__date"><b>' + days + '</b><span>' + label + '</span></div>' +
+      '<div><h3>' + esc(t.place) + '</h3>' + (info ? '<p>' + esc(info) + '</p>' : '') + '</div>' +
+      '<a class="btn btn--primary" data-trip-wa href="https://api.whatsapp.com/send?phone=972528501313" target="_blank" rel="noopener">להרשמה בוואטסאפ</a></li>';
+  }
+
+  function setupTrips(list) {
     const today = new Date(); today.setHours(0, 0, 0, 0);
     let shown = 0;
     list.querySelectorAll('[data-end]').forEach(li => {
@@ -107,7 +157,7 @@
     if (empty) empty.hidden = shown > 0;
     const cal = section.querySelector('[data-trips-cal]');
     if (cal && shown) tripsCalendar(cal, [...list.querySelectorAll('[data-end]')], today);
-  });
+  }
 
   // Month calendar drawn from the trips list: trip days are marked; clicking one points at its trip.
   function tripsCalendar(cal, items, today) {
@@ -150,7 +200,7 @@
           cls.push('is-trip');
           if (+date === +t.start) cls.push('is-start');
           if (+date === +t.end) cls.push('is-end');
-          h += '<a class="' + cls.join(' ') + '" href="#' + t.li.id + '" aria-label="' + d + ' ב' + MONTHS[m] + ': ' + t.place + '">' + d + '</a>';
+          h += '<a class="' + cls.join(' ') + '" href="#' + t.li.id + '" aria-label="' + d + ' ב' + MONTHS[m] + ': ' + esc(t.place) + '">' + d + '</a>';
         } else {
           h += '<span class="' + cls.join(' ') + '">' + d + '</span>';
         }
@@ -163,7 +213,7 @@
       if (!inMonth) {
         const next = trips.find(t => key(t.start) > cur);
         none.innerHTML = '<p>אין כרגע מסעות בחודש ' + MONTHS[m] + ' ' + y + '.</p>' + (next
-          ? '<button type="button" class="btn btn--secondary" data-goto="' + key(next.start) + '">למסע הבא: ' + next.place + ', ' + next.li.dataset.when + '</button>'
+          ? '<button type="button" class="btn btn--secondary" data-goto="' + key(next.start) + '">למסע הבא: ' + esc(next.place) + ', ' + esc(next.li.dataset.when) + '</button>'
           : '<p>המסעות הבאים יפורסמו כאן בקרוב.</p>');
       }
     };

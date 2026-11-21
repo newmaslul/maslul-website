@@ -122,10 +122,10 @@
   <section class="section section--alt" id="trips">
     <div class="wrap">
       <div class="head"><span class="eyebrow">לוח מסעות</span><h2>המסעות הקרובים</h2><p>היציאות הבאות של מסע הורה וילד. המקומות מוגבלים, ולכן כדאי לשריין מוקדם.</p></div>
-      <!-- To add a trip, copy one <li> line. data-start / data-end = first and last day (YYYY-MM-DD). The calendar is drawn from these; the trip hides itself after data-end. -->
+      <!-- Trips are read from the Google Sheet in data-sheet ("מסעות הורה וילד – לוח באתר" in Drive): add a row there. The <li> below is only the fallback if the sheet can't be read. To add one by hand, copy one <li> line. data-start / data-end = first and last day (YYYY-MM-DD). The calendar is drawn from these; the trip hides itself after data-end. -->
       <div class="trips-board">
       <div class="trips-cal" data-trips-cal hidden></div>
-      <ul class="trips" data-trips>
+      <ul class="trips" data-trips data-sheet="1LNsT0-5lo3kZ15acw1t8UUDcY2JgTqsK-JHDc2v0orM">
         <li class="trip" data-start="2026-12-11" data-end="2026-12-12" data-place="מדבר יהודה" data-when="11–12 בדצמבר 2026"><div class="trip__date"><b>11–12</b><span>דצמבר 2026</span></div><div><h3>מדבר יהודה</h3><p>גילאים 12–14 · לינה בחאן השיירות</p></div><a class="btn btn--primary" data-trip-wa href="https://api.whatsapp.com/send?phone=972528501313" target="_blank" rel="noopener">להרשמה בוואטסאפ</a></li>
       </ul>
       </div>
