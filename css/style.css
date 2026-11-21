@@ -219,6 +219,10 @@ p { margin: 0; }
 .card__label { font: 700 24px/1 var(--f-hand); color: var(--rust); }
 .card__more { margin-top: auto; padding-top: 8px; font-weight: 700; display: inline-flex; gap: 8px; align-items: center; }
 .card__more svg { width: 16px; height: 16px; }
+.card--any { justify-content: center; background: transparent; box-shadow: none; border: 2px dashed var(--rust); }
+.card--any .card__body { padding: 28px 18px; justify-content: center; }
+.card--any h3 { font-size: 26px; }
+.card--any .card__more { margin-top: 10px; }
 
 /* ---------- Steps: handwritten numbers on a dashed trail ---------- */
 .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
