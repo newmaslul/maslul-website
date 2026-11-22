@@ -647,3 +647,6 @@ html.a11y-contrast img, html.a11y-contrast video { background-color: transparent
 .team--small .person { flex: 0 0 calc((100% - 72px) / 4); }
 @media (max-width: 1100px) { .team--small .person { flex-basis: calc((100% - 48px) / 3); } }
 @media (max-width: 700px) { .team--small { gap: 28px 14px; } .team--small .person { flex-basis: calc((100% - 14px) / 2); } }
+.split--media-wide { grid-template-columns: 1fr 1.6fr; gap: 56px; }
+.split--media-wide .photo.photo--video { aspect-ratio: 16 / 9; transform: rotate(-1deg); }
+@media (max-width: 900px) { .split--media-wide { grid-template-columns: 1fr; } }
